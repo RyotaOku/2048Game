@@ -1,0 +1,880 @@
+.gameTable {
+  position: fixed;
+  margin: auto;
+  inset: 0;
+  border-spacing: 5px;
+  background: #4e54c8c0;
+}
+
+.gameTable caption {
+  text-align: left;
+  background: #4e54c8c0;
+  height: 40px;
+  width: 100%;
+  padding: 5px 5px 2px;
+  position: relative;
+}
+
+.gameTable caption span {
+  display: inline-block;
+  padding: 5px 20px 0;
+  margin: 0 10px;
+  height: 100%;
+  background: #313476be;
+  color: #ccc;
+  border-radius: 5px;
+  /* margin: 0 20px; */
+  /* display: none; */
+}
+
+.gameTable caption span:first-child {
+  margin: 0;
+}
+
+.gameTable caption span.next {
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: 5px;
+  right: 110px;
+  text-align: center;
+  padding: 8px 0;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.gameTable caption .pauseButton {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 70px;
+  height: 34px;
+  background: #ffa500;
+  border: none;
+  border-radius: 5px;
+}
+
+.gameTable caption .pauseButton:hover {
+  background: #c38106;
+  cursor: pointer;
+}
+
+.gameTable caption .pauseButton:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  width: 5px;
+  height: 60%;
+  background: #fff;
+}
+
+.gameTable caption .pauseButton::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 20%;
+  right: 40%;
+  width: 5px;
+  height: 60%;
+  background: #fff;
+}
+
+.gameTable caption .pauseButton:hover::after,
+.gameTable caption .pauseButton:hover::before {
+  background: #ccc;
+}
+
+.gameTable caption .resetButton {
+  position: absolute;
+  right: 80px;
+  top: 5px;
+  width: 34px;
+  height: 34px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Hammer_and_sickle_%28transparent_and_white%29.svg/1200px-Hammer_and_sickle_%28transparent_and_white%29.svg.png') #87ceeb no-repeat;
+  background-size: 80% 80%;
+  background-position: center center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.gameTable caption .resetButton:hover {
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Hammer_and_sickle_%28transparent_and_white%29.svg/1200px-Hammer_and_sickle_%28transparent_and_white%29.svg.png') #63adca no-repeat;
+  background-size: 80% 80%;
+  background-position: center center;
+}
+
+.gameTable tbody td {
+  width: 100px;
+  height: 100px;
+  /* border: .5px solid #969696; */
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+  background: #4e54c887;
+  color: #a4c9f1;
+}
+
+.overlay {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  /* background: #00000050; */
+  background: url('https://originalnews.nico/wp-content/uploads/2020/06/05215904/f7a8730861e7bddfcf386608bf740b37.png') no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  animation: dead 2s forwards;
+  opacity: 0;
+}
+
+@keyframes dead {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.restart {
+  position: absolute;
+  bottom: 100px;
+  left: calc(50% - 120px);
+  width: 160px;
+  height: 60px;
+  border-radius: 50% 50% 50% 70%/50% 50% 70%;
+  font-size: 20px;
+  background: rgb(65, 11, 11);
+  color: #525252;
+  border: none;
+  opacity: 0;
+  animation: restart 2s forwards;
+  animation-delay: 2s;
+  cursor: pointer;
+}
+
+@keyframes restart {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.pauseOverlay {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  z-index: 15;
+}
+
+.pauseOverlay h1 {
+  /* background-clip: text; */
+  user-select: none;
+  font-size: 80px;
+  line-height: 10;
+  text-align: center;
+  color: #fff;
+  /* opacity: 0; */
+  /* -webkit-background-clip: text; */
+}
+
+.area {
+  background: #4e54c8;
+  background: linear-gradient(to left, #8f94fb, #4e54c8);
+  width: 100%;
+  height: 100vh;
+}
+
+.circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.circles li {
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  animation: animate 25s linear infinite;
+  bottom: -150px;
+
+}
+
+.circles li:nth-child(1) {
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+}
+
+
+.circles li:nth-child(2) {
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2s;
+  animation-duration: 12s;
+}
+
+.circles li:nth-child(3) {
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 4s;
+}
+
+.circles li:nth-child(4) {
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+
+.circles li:nth-child(5) {
+  left: 65%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
+}
+
+.circles li:nth-child(6) {
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 3s;
+}
+
+.circles li:nth-child(7) {
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 7s;
+}
+
+.circles li:nth-child(8) {
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 15s;
+  animation-duration: 45s;
+}
+
+.circles li:nth-child(9) {
+  left: 20%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 2s;
+  animation-duration: 35s;
+}
+
+.circles li:nth-child(10) {
+  left: 85%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 0s;
+  animation-duration: 11s;
+}
+
+
+
+@keyframes animate {
+
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    border-radius: 0;
+  }
+
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
+
+}
+
+.board {
+  width: 200px;
+  height: 100px;
+  position: absolute;
+  border: 1px solid #000;
+  margin: auto;
+  right: 200px;
+}
+
+.areaXP {
+  background: url('https://cdn.wallpaperhub.app/cloudcache/b/d/7/6/4/b/bd764bb25d49a05105060185774ba14cd2c846f7.jpg') center center no-repeat;
+  background-size: 100% 100%;
+}
+
+.gameTableXP {
+  background: #EBE8DA;
+  font-family: "Pixel Sans Serif Condensed", Arial;
+  font-weight: 100;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  /* border: 5px solid #152CD1;
+  border-top: none; */
+  box-shadow: inset -1px -5px #00138c, inset 1px 1px #0831d9, inset -2px -2px #001ea0, inset 2px 2px #166aee, inset -5px -3px #003bda, inset 5px 3px #0855dd;
+}
+
+.gameTableXP tbody td {
+  background: #F3F2EF;
+  font-size: 12px;
+}
+
+.gameTableXP tbody {
+  display: block;
+}
+
+.gameTableXP caption {
+  background: linear-gradient(180deg, #0997ff, #0053ee 8%, #0050ee 40%, #06f 88%, #06f 93%, #005bff 95%, #003dd7 96%, #003dd7);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 7px;
+
+  height: 50px;
+  padding-bottom: 10px;
+}
+
+.gameTableXP caption .pauseButton {
+  border: 1.5px solid #fff;
+  background: #E0542C;
+  width: 34px;
+  top: 8px;
+  right: 10px;
+}
+
+.gameTableXP caption .pauseButton::before {
+  left: 8px;
+}
+
+.gameTableXP caption .pauseButton::after {
+  left: 18px;
+}
+
+.gameTableXP caption .pauseButton:hover {
+  background: #e06240;
+}
+
+.gameTableXP caption .pauseButton:hover::after,
+.gameTableXP caption .pauseButton:hover::before {
+  background: #fff;
+}
+
+
+.gameTableXP caption .resetButton {
+  border: 1.5px solid #fff;
+  top: 8px;
+  right: 50px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Hammer_and_sickle_%28transparent_and_white%29.svg/1200px-Hammer_and_sickle_%28transparent_and_white%29.svg.png') #265EE0 no-repeat;
+  background-size: 80% 80%;
+  background-position: center center;
+}
+
+.gameTableXP caption .resetButton:hover {
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Hammer_and_sickle_%28transparent_and_white%29.svg/1200px-Hammer_and_sickle_%28transparent_and_white%29.svg.png') #396ce3 no-repeat;
+  background-size: 80% 80%;
+  background-position: center center;
+}
+
+.gameTableXP caption span.next {
+  background: #000;
+  position: absolute;
+  top: 8px;
+  right: 81px;
+  border: 1.5px solid #fff;
+  line-height: 1.2;
+  text-shadow: none;
+}
+
+.gameTableXP caption span {
+  background: none;
+  padding: 8px 0 0 10px;
+  color: #fff;
+  text-shadow: 1px 1px #0f1089;
+}
+
+.areaXP .circles li {
+  display: none;
+}
+
+.overlayXP {
+  background: #000;
+  background: url('https://www.digitaltrends.com/wp-content/uploads/2014/02/windowsxpcrash.jpg?p=1') no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  animation: dead .1s forwards;
+}
+
+.overlayXP .restart {
+  background: url('https://play-lh.googleusercontent.com/P7Q4mCh2eIftapjVFx7ePrMev9VwLxzmqeoo8_kJ-Bb6Pgv3oh_tIbG-ZvPTFAayFA') no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  top: 50%;
+  left: calc(50% - 500px/2);
+  width: 500px;
+  height: 470px;
+  color: transparent;
+}
+
+.areaUSSR {
+  background: url('https://i.imgur.com/17cQHL0.jpg') center center no-repeat;
+  background-size: 100% 100%;
+}
+
+.gameTableUSSR {
+  background: #7400008f;
+}
+
+.gameTableUSSR tbody td {
+  background: #7400008f;
+  color: #09460f;
+}
+
+.gameTableUSSR caption {
+  background: #7400008f;
+}
+
+.gameTableUSSR caption .pauseButton {
+  background: #CB2217;
+}
+
+.gameTableUSSR caption .pauseButton:hover {
+  background: #a51d14;
+
+}
+
+.gameTableUSSR caption .pauseButton:hover::after,
+.gameTableUSSR caption .pauseButton:hover::before {
+  background: #ff0;
+}
+
+.gameTableUSSR caption .pauseButton::after,
+.gameTableUSSR caption .pauseButton::before {
+  background: #ff0;
+}
+
+.gameTableUSSR caption .resetButton {
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Hammer_and_sickle_%28transparent_and_white%29.svg/1200px-Hammer_and_sickle_%28transparent_and_white%29.svg.png') #CB2217 no-repeat;
+  background-size: 80% 80%;
+  background-position: center center;
+}
+
+.gameTableUSSR caption .resetButton:hover {}
+
+.gameTableUSSR caption span.next {
+  font-size: 0;
+}
+
+.gameTableUSSR caption span {
+  display: inline-block;
+  padding: 5px 20px 0;
+  margin: 0 10px;
+  height: 100%;
+  background: #CB2217;
+  color: #ff0;
+  border-radius: 5px;
+}
+
+.areaUSSR .circles li {
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Coat_of_arms_of_the_Soviet_Union_%281956%E2%80%931991%29.svg/1920px-Coat_of_arms_of_the_Soviet_Union_%281956%E2%80%931991%29.svg.png') no-repeat;
+  background-size: 100% 100%;
+  filter: blur(1px);
+}
+
+.overlayUSSR {
+  background: #000;
+  background: url('https://storage.googleapis.com/afs-prod/media/5052ae58ef49478187c64e360165e274/3000.jpeg') no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  animation: dead 1s forwards;
+}
+
+.overlayUSSR .restart {
+  background: url('https://p.potaufeu.asahi.com/b34a-p/picture/26529756/68319dcf50d47b98d0a67b600b16606f.jpg') no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+  top: 55%;
+  left: calc(50% - 500px/2);
+  width: 500px;
+  height: 320px;
+  color: transparent;
+  border-radius: 0;
+  box-shadow: 1px 1px 120px #000;
+}
+
+.startWrap {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, rgb(143, 148, 251), #4e54c8);
+  z-index: 100;
+}
+
+.startWrap h1 {
+  margin-top: 100px;
+  font-size: 60px;
+  text-align: center;
+  color: transparent;
+  background: rgba(0, 0, 0, 1);
+  text-shadow:
+    0 0 0.1em rgba(92, 82, 207, 0.175),
+    0.01em 0.04em 0.03em rgba(143, 148, 251, 0.395);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.startWrap h1 span {
+  font-size: 240px;
+  line-height: 1;
+}
+
+
+.startWrap .gameStart {
+  --c: #fff;
+  position: absolute;
+  top: 68vh;
+  left: calc(50% - 220px/2);
+  background: linear-gradient(90deg, #0000 33%, #fff5, #0000 67%) var(--_p, 100%)/300% no-repeat,
+    #1f3e86;
+  color: #0000;
+  border: none;
+  transform: perspective(500px) rotateY(calc(20deg*var(--_i, -1)));
+  text-shadow: calc(var(--_i, -1)* 0.08em) -.01em 0 var(--c),
+    calc(var(--_i, -1)*-0.08em) .01em 2px #0004;
+  outline-offset: .1em;
+  transition: 0.3s;
+  scale: 2;
+}
+
+.startWrap .gameStart:hover,
+.startWrap .gameStart:focus-visible {
+  --_p: 0%;
+  --_i: 1;
+}
+
+.startWrap .gameStart:active {
+  text-shadow: none;
+  color: var(--c);
+  box-shadow: inset 0 0 9e9q #0005;
+  transition: 0s;
+}
+
+.startWrap .gameStart {
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0;
+  cursor: pointer;
+  padding: .1em .3em;
+}
+
+.startWrap p {
+  position: absolute;
+  bottom: 60px;
+  width: 100%;
+  color: #2b2f6f;
+  text-align: center;
+  font-weight: bold;
+}
+
+.startWrapXP {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #c0c0c0;
+  font-family: "Pixel Sans Serif", Arial;
+  font-weight: 100;
+  z-index: 100;
+}
+
+.startWrapXP h1 {
+  margin-top: 100px;
+  font-size: 45px;
+  text-align: center;
+  color: #000;
+  background: none;
+  text-shadow: none;
+
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.startWrapXP h1 span {
+  text-shadow: none;
+  font-size: 160px;
+  line-height: 1;
+}
+
+
+.startWrapXP .gameStart {
+  position: absolute;
+  top: 68vh;
+  left: calc(50% - 220px/2);
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+  transform: none;
+  outline-offset: .1em;
+  transition: none;
+  scale: 1;
+
+  font-family: "Pixel Sans Serif", Arial;
+  color: transparent;
+  text-shadow: 0 0 #222;
+  background: #c0c0c0;
+  font-size: 18px;
+  font-weight: lighter;
+  margin: 0;
+  cursor: pointer;
+  padding: 8px 14px;
+  border: none;
+}
+
+.startWrapXP .gameStart:focus-visible {
+  box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px grey;
+  text-shadow: 1px 1px #222;
+  outline: 1px dotted #000;
+  outline-offset: -4px;
+}
+
+.startWrapXP .gameStart:active {
+  box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px grey;
+  text-shadow: 1px 1px #222;
+  outline: 2px dotted #000;
+  outline-offset: -6px;
+  color: transparent;
+}
+
+.startWrapXP p {
+  position: absolute;
+  bottom: 60px;
+  width: 100%;
+  color: #000;
+  text-align: center;
+  font-weight: bold;
+}
+
+.startWrapUSSR {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url('https://mf.b37mrtl.ru/rbthmedia/images/2020.02/original/5e4fc37185600a3a8c630bbe.jpg') no-repeat #a51d14;
+  background-size: 100% 100%;
+  background-position: center center;
+  font-weight: 100;
+  z-index: 100;
+  font-family: 'Oswald', sans-serif;
+}
+
+.startWrapUSSR .USSRBack {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #00000020;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.startWrapUSSR h1 {
+  position: relative;
+  margin-top: 00px;
+  font-size: 35px;
+  text-align: left;
+  color: #ff0;
+  text-shadow: none;
+  background: #f00000f1;
+  width: fit-content;
+  padding: 0 100px 0 20px;
+  background-clip: inherit;
+  -webkit-background-clip: inherit;
+  z-index: 1;
+}
+
+.startWrapUSSR h1 span {
+  text-shadow: none;
+  font-size: 125px;
+  line-height: 1;
+}
+
+
+.startWrapUSSR .gameStart {
+  position: absolute;
+  top: 48vh;
+  left: calc(50% - 300px/2);
+  box-shadow: none;
+  transform: none;
+  outline-offset: .1em;
+  transition: none;
+  scale: 1;
+
+  font-family: "Pixel Sans Serif", Arial;
+  color: transparent;
+  text-shadow: none;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/9/90/Marx_-_Engels_-_Lenin_-_Stalin.png');
+  background-size: 100% 100%;
+  background-position: center center;
+  width: 300px;
+  height: 300px;
+  font-size: 18px;
+  font-weight: lighter;
+  margin: 0;
+  cursor: pointer;
+  padding: 8px 14px;
+  border: none;
+  transition: .2s;
+}
+
+.startWrapUSSR .gameStart:hover {
+  filter: drop-shadow(1px 1px 30px rgb(255, 234, 0));
+}
+
+.startWrapUSSR .gameStart:focus-visible {
+  box-shadow: none;
+  text-shadow: none;
+  outline: none;
+  outline-offset: 0;
+}
+
+.startWrapUSSR .gameStart:active {
+  box-shadow: none;
+  text-shadow: none;
+  outline: 0;
+  outline-offset: 0;
+  color: transparent;
+}
+
+.startWrapUSSR p {
+  position: absolute;
+  font-size: 40px;
+  line-height: 1;
+  bottom: 60px;
+  width: 100%;
+  color: rgb(177, 1, 1);
+  text-align: center;
+  font-weight: bold;
+}
+
+.gameTableUSSR tbody .td {
+  text-align: left;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0 10px 70px;
+}
+
+.home {
+  width: 50px;
+  height: 50px;
+  background: url('https://cdn-icons-png.flaticon.com/512/25/25694.png') no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+
+.hint {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  background: url('https://static.thenounproject.com/png/3194438-200.png') no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+  width: 50px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+.hintWrap {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background: #000000c0;
+  animation: restart .2s forwards;
+}
+
+.hintText {
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 40%;
+  height: 100vh;
+  background: #fff;
+  padding: 100px 50px 0;
+  animation: hint .2s forwards;
+}
+
+@keyframes hint {
+  0% {
+    left: -40%;
+  }
+
+  100% {
+    left: 0;
+  }
+}
+
+.hintText h1 {
+  margin-bottom: 60px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #000;
+}
+
+.hintText p:not(:has(a)){
+  font-family: monospace;
+  font-weight: bold;
+  margin-bottom: 60px;
+}
+
+.hintText ul {
+  padding-left: 20px;
+  font-size: 20px;
+}
+
+.hintText>ul>li {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.hintText ul>li:not(.hintText>ul>li) {
+  font-size: 16px;
+  margin: 10px 0;
+  font-weight: normal;
+}
+
+.hintText p:has(a) {
+  position: absolute;
+  bottom: 100px;
+}
