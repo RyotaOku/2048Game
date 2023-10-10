@@ -5,7 +5,8 @@ With the power of React and TypeScript, I dove into my very first game developme
 *(概要: ReactとTypeScriptを使用して、初めてのゲーム開発に挑戦。見た目とゲームのロジックに注力しただけでなく、イースターエッグとしての隠し機能も追加。具体的な内容は、プレイしてのお楽しみです。)*
 
 ### Screenshot or GIF
-*To be added.*
+![FireShot Capture 028 -  - localhost](https://github.com/RyotaOku/2048Game/assets/114388961/6bd371ad-13af-40e8-be5f-1d5aecbbb7b9)
+
 
 ### Operating Environment
 Tailored primarily on the newest version of Chrome. While it probably vibes well on most modern browsers, there could be a jive out of step on browsers like Safari. Just be a bit mindful when grooving on different stages!
