@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { fallBlockAction, fallBlockState } from './_fallBlockReducer'
-import { fieldAction } from './fieldReducer'
+import { fieldAction } from './_fieldReducer'
 
 export default function Timer() {
 
