@@ -1,8 +1,8 @@
 import { useState, useEffect, useReducer, useRef, CSSProperties } from 'react'
-import { doIntervalProc, doKeydownProc, restart, pause, start } from './actioncreator'
+import { doIntervalProc, doKeydownProc, restart, pause, start } from './_actioncreator'
 import Style from '@/styles/2048Game.module.css'
-import { fallBlockReducer } from './fallBlockReducer'
-import { fieldReducer } from './fieldReducer'
+import { fallBlockReducer } from './_fallBlockReducer'
+import { fieldReducer } from './_fieldReducer'
 
 export default function Game2048() {
   useEffect(() => {
